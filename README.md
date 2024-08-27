@@ -45,11 +45,11 @@
 > [x] For showing shapes in terminal use the `artii` gem or `ruby2d` gem
 > [x] To install `ruby2d` gem successfully first install all needed libraries needed for it to work
 
-- [] How to save progress of one game using a file
-- [] How to delete a saved game
-- [] How to save game by command
-- [] How to draw in a terminal
-- [] Gem for making text bold in terminal
+- [ ] How to save progress of one game using a file
+- [ ] How to delete a saved game
+- [ ] How to save game by command
+- [ ] How to draw in a terminal
+- [ ] Gem for making text bold in terminal
 
 ### Solutions
 
