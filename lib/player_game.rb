@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 require_relative 'game_data/game_track'
 require 'colorize'
 require 'json'
 # class for starting the game for player
 class PlayerGame < GameTrack
   def initialize
+    super
     @json_path = File.join(__dir__, './game_data/player_game.json') # The path to file
     @a = Artii::Base.new
     start_game
@@ -11,14 +14,16 @@ class PlayerGame < GameTrack
 
   private
 
-  def start_game # introduces player to game
+  # introduces player to game
+  def start_game
     tries = JSON.parse(File.read(@json_path))['player_tries']
-    intro = ["You have #{tries} tries to guess the word chosen by me :)".colorize(:yellow), 'GOOD LUCK'.colorize(:green).bold]
+    intro = ["You have #{tries} tries to guess the word chosen by me :)".colorize(:yellow),
+             'GOOD LUCK'.colorize(:green).bold]
     intro.each do |line|
       sleep(1)
       puts(line)
     end
-    if tries > 0
+    if tries.positive?
       chosen_word
     else
       game_over
@@ -26,7 +31,8 @@ class PlayerGame < GameTrack
     play
   end
 
-  def chosen_word # Shows the chosen word that the player has guessed each time
+  # Shows the chosen word that the player has guessed each time
+  def chosen_word
     word = JSON.parse(File.read(@json_path))['player_guess']
     puts "The chosen word is ------------> #{word}"
     sleep(1)
@@ -34,17 +40,17 @@ class PlayerGame < GameTrack
   end
 
   def play
-    self.player_tries # decraeses the amount of tries player has and updates json file
+    player_tries # decraeses the amount of tries player has and updates json file
     tries = JSON.parse(File.read(@json_path))['player_tries']
     check_tries(tries)
     if tries <= 0
-      self.reset_game
+      reset_game
       game_over
     end
     while tries > -2
       play_game(gets.chomp) # lets player take guess each time
       check_win(JSON.parse(File.read(@json_path))['random_word'])
-      self.player_tries # decraeses the amount of tries player has and updates json file
+      player_tries # decraeses the amount of tries player has and updates json file
     end
   end
 
@@ -67,7 +73,8 @@ class PlayerGame < GameTrack
     end
   end
 
-  def show_name_completion(player_guess) # shows the letters the player guesses each time
+  # shows the letters the player guesses each time
+  def show_name_completion(player_guess)
     guess = player_guess[0].downcase
     chosen_word = JSON.parse(File.read(@json_path))['random_word']
     if chosen_word.include?(guess)
@@ -95,22 +102,22 @@ class PlayerGame < GameTrack
     nums.each do |num|
       word_completion[num] = letter
     end
-    self.track_word_completion(word_completion)
+    track_word_completion(word_completion)
   end
 
   def player_wins
     puts "CORRECT !!! the word was #{JSON.parse(File.read(@json_path))['random_word']}".colorize(:green)
     sleep(1)
     puts @a.asciify('YOU WIN !!!').colorize(:green).bold
-    self.reset_game
+    reset_game
     exit
   end
 
   def check_win(chosen_word)
     player_guess = JSON.parse(File.read(@json_path))['player_guess']
-    if chosen_word == player_guess
-      player_wins
-    end
+    return unless chosen_word == player_guess
+
+    player_wins
   end
 
   def check_tries(tries)
@@ -118,7 +125,7 @@ class PlayerGame < GameTrack
   end
 
   def game_over
-    self.reset_game
+    reset_game
     puts 'Game Over YOU LOSE :('.colorize(:red)
     exit
   end

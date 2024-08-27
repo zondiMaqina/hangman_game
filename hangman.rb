@@ -1,6 +1,6 @@
 require 'colorize'
 require 'artii'
-require_relative 'lib/player_game.rb'
+require_relative 'lib/player_game'
 
 # Class intiation that starts the game
 class StartGame
@@ -20,11 +20,11 @@ class StartGame
 
   def show_options
     options = ['Play Game', 'Exit Game']
-    options.each_with_index do |option, index|# displays the options for player to choose
+    options.each_with_index do |option, index| # displays the options for player to choose
       sleep(1)
-      puts "#{(index + 1)} #{option}".colorize(:blue)
+      puts "#{index + 1} #{option}".colorize(:blue)
     end
-    execute_option(gets.chomp)# executes the option chosen
+    execute_option(gets.chomp) # executes the option chosen
   end
 
   def execute_option(chosen_option)
