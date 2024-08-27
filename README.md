@@ -55,3 +55,6 @@
 
 - [x] For making text bold in terminal use the `colorize` gem with the `#bold` method
 - [x] For showing shapes in terminal use the `artii` gem or `ruby2d` gem
+- [x] To save progress in each game we use JSON string formatiing for stored information in hash
+- [x] To make text bold in terminal we use the `bold` method from the gem `colorize`
+- [x] To draw in terminal we use the `ruby2d` gem which shows the graphics externally
