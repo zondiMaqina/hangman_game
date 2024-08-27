@@ -31,20 +31,6 @@
 
 ## CHALLENGES & SOLUTIONS
 
-### Challenges
-
-> [] How to save progress of one game using a file
-> [] How to delete a saved game
-> [] How to save game by command
-> [] How to draw in a terminal
-> [] Gem for making text bold in terminal
-> [] Installing the `ruby2d` gem on ruby
-### Solutions
-
-> [x] For making text bold in terminal use the `colorize` gem with the `#bold` method
-> [x] For showing shapes in terminal use the `artii` gem or `ruby2d` gem
-> [x] To install `ruby2d` gem successfully first install all needed libraries needed for it to work
-
 - [ ] How to save progress of one game using a file
 - [ ] How to delete a saved game
 - [ ] How to save game by command
